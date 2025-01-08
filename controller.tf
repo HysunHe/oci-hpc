@@ -512,8 +512,9 @@ resource "null_resource" "cluster" {
       "echo ${var.configure} > /tmp/configure.conf",
       "timeout 2h /opt/oci-hpc/bin/configure.sh 2>&1 | tee /opt/oci-hpc/logs/initial_configure.log",
       "exit_code=$${PIPESTATUS[0]}",
+      "echo $exit_code",
       "/opt/oci-hpc/bin/initial_monitoring.sh",
-    "exit $exit_code"]
+    "exit 0"]
     connection {
       host        = local.host
       type        = "ssh"
