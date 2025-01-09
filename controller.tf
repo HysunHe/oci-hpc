@@ -518,8 +518,9 @@ resource "null_resource" "cluster" {
       "echo 4+++++++++++++++++++++++++++++++++++$${PIPESTATUS[0]}",
       "exit_code=$${PIPESTATUS[0]}",
       "echo $exit_code",
+      "echo 5+++++++++++++++++++++++++++++++++++$${PIPESTATUS[0]}",
       "/opt/oci-hpc/bin/initial_monitoring.sh",
-    "exit 0"]
+    "exit $exit_code"]
     connection {
       host        = local.host
       type        = "ssh"
